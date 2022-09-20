@@ -18,4 +18,10 @@ class Market
     v_names
   end
 
+  def vendors_that_sell(item)
+    match_array = @vendors.reject do |vendor|
+      vendor.inventory.keys.include?(item) == false
+    end
+    match_array
+  end
 end
