@@ -11,6 +11,11 @@ class Market
     @vendors << vendor
   end
 
-
+  def vendor_names
+    v_names = @vendors.map do |vendor|
+      vendor.name
+    end
+    v_names
+  end
 
 end
