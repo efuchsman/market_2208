@@ -8,7 +8,19 @@ class Vendor
 
 
   def check_stock(item)
-    @inventory.values.count
+    if @inventory[item]
+      return @inventory[item]
+    else
+      0
+    end
+  end
+
+  def stock(item, amount)
+    if @inventory[item]
+      @inventory[item] += amount
+    else
+      @inventory[item] = amount
+    end
   end
 
 end
