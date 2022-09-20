@@ -107,6 +107,7 @@ RSpec.describe Market do
       )
 
       expect(market.overstocked_items).to eq([item1])
+      expect(market.sorted_item_list).to eq(["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"])
   end
 
 end

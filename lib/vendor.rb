@@ -27,7 +27,7 @@ class Vendor
     pot_rev = @inventory.map do |item, amount|
       item.price * amount
     end
-    pot_rev.sum
+    pot_rev.sum.round(2)
   end
 
 end
