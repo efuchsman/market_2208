@@ -24,4 +24,9 @@ class Market
     end
     match_array
   end
+
+  def potential_revenue
+
+  end
+
 end

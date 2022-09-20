@@ -23,4 +23,11 @@ class Vendor
     end
   end
 
+  def potential_revenue
+    pot_rev = @inventory.map do |item, amount|
+      item.price * amount
+    end
+    pot_rev.sum
+  end
+
 end
