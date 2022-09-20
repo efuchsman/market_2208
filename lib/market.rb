@@ -1,3 +1,5 @@
+
+
 class Market
 
   attr_reader :name, :vendors
@@ -23,6 +25,20 @@ class Market
       vendor.inventory.keys.include?(item) == false
     end
     match_array
+  end
+
+  def total_inventory
+    entire_inventory = {}
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, amount|
+           if entire_inventory[item]
+          entire_inventory[item][:quantity] += amount
+           else
+            entire_inventory[item] = {quantity: vendor.inventory[item], vendors: vendors_that_sell(item)}
+           end
+      end
+    end
+   entire_inventory
   end
 
 end
