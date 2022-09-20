@@ -6,4 +6,9 @@ class Vendor
     @inventory = {}
   end
 
+
+  def check_stock(item)
+    @inventory.values.count
+  end
+
 end
