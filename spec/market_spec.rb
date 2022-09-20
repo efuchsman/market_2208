@@ -117,6 +117,7 @@ RSpec.describe Market do
       item2 = Item.new({name: "Tomato", price: "$0.50"})
       item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
       item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
+      item5 = Item.new({name: 'Onion', price: '$0.25'})
       vendor1 = Vendor.new("Rocky Mountain Fresh")
 
       vendor1.stock(item1, 35)
@@ -129,13 +130,21 @@ RSpec.describe Market do
       vendor3 = Vendor.new("Palisade Peach Shack")
 
       vendor3.stock(item1, 65)
-      vendor3.stock(item3, 10)
+
 
       market.add_vendor(vendor1)
       market.add_vendor(vendor2)
       market.add_vendor(vendor3)
-
+      allow(Date).to receive(:today).and_return(Date.new(2022,9,20))
       expect(market.date).to eq('20/09/2022')
+
+      expect(market.sell(item1, 200)).to be false
+      expect(market.sell(item5, 1)).to be false
+      expect(market.sell(item4, 5)).to be true
+      expect(vendor2.check_stock(item4)).to eq(45)
+      expect(market.sell(item1, 40)).to be true
+      expect(vendor1.check_stock(item1)).to eq(0)
+      expect(vendor3.check_stock(item1)).to eq(60)
 
     end
 

@@ -56,7 +56,22 @@ class Market
   end
 
   def date
-    Date.today.strftime "%d/%m/%Y".to_s
+    Date.today.strftime("%d/%m/%Y")
   end
 
+  def sell(item, quantity)
+    return false if sorted_item_list.none?(item.name)
+    return false if  total_inventory[item][:quantity] < quantity
+
+    total_inventory[item][:vendors].each do |vendor|
+      if vendor.inventory[item] < quantity
+        quantity -= vendor.inventory[item]
+        vendor.inventory[item] = 0
+      else
+        vendor.inventory[item] -= quantity
+        break
+      end
+    end
+      true
+  end
 end
