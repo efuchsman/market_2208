@@ -55,4 +55,8 @@ class Market
    end.sort
   end
 
+  def date
+    Date.today.strftime "%d/%m/%Y".to_s
+  end
+
 end
