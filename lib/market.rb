@@ -72,6 +72,6 @@ class Market
         break
       end
     end
-      true
+    true
   end
 end
